@@ -1,5 +1,7 @@
 import React from "react";
 
+import StartNowNav from "./StartNowNav";
+
 function Navbar() {
   return (
 <nav>
@@ -7,12 +9,11 @@ function Navbar() {
   <a href="#" class="brand-logo">Adventure Routes</a>
   <ul id="nav-mobile" class="right hide-on-med-and-down">
     
-    <li><a href="badges.html">Login</a></li>
-    <li><a href="collapsible.html">Signup</a></li>
+    <StartNowNav/>
   </ul>
 </div>
 </nav>
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as PageRouter, Route} from "react-router-dom";
-import Navbar from "./Components/Navbar/index.js";
-import Jumbotron from "./Components/Jumbotron"
+import Navbar from "./components/Navbar/index.js";
+import Jumbotron from "./components/Jumbotron"
 
 
 
