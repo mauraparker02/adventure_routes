@@ -1,34 +1,39 @@
 import React, { Component } from 'react';
 import axios from "axios";
 
-import Navbar from "./components/Navbar";
-import Jumbotron from "./components/Jumbotron";
+import Navbar from "./Components/Navbar";
+import Jumbotron from "./Components/Jumbotron";
 
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loggedIn: false,
-      username: null,
-      user: null
-    }
+  state = {
+    loggedIn: false,
+    username: null,
+    user: null
+  };
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     loggedIn: false,
+  //     username: null,
+  //     user: null
+  //   }
 
-    this.getUser = this.getUser.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.updateUser = this.updateUser.bind(this);
-  }
+    //this.getUser = this.getUser.bind(this);
+    //this.componentDidMount = this.componentDidMount.bind(this);
+    //this.updateUser = this.updateUser.bind(this);
+
 
   componentDidMount() {
     this.getUser();
   }
 
-  updateUser(userObject) {
+  updateUser = (userObject) =>{
     this.setState(userObject);
   }
 
-  getUser() {
+  getUser = () => {
     axios.get('/user/').then(response => {
       console.log('Get user response: ');
       console.log(response.data);
