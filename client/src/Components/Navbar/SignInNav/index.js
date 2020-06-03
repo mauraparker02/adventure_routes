@@ -62,30 +62,24 @@ class SignInNav extends Component {
             <Modal header="Sign In" trigger={signInTrigger}>
                 <div className="row">
                     <form className="col s12">
-                        <div className="row">
-                            <div className="input-field col s12">
-                                <TextInput
-                                    id="username"
-                                    type="text"
-                                    name="username"
-                                    className="validate"
-                                    value={this.state.username}
-                                    onChange={this.handleChange}
-                                />
-                                <label htmlFor="username">Username</label>
-                            </div>
-                            <div className="input-field col s12">
-                                <TextInput
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    className="validate"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
-                                />
-                                <label htmlFor="password">Password</label>
-                            </div>
-                        </div>
+                        <TextInput
+                            s={12}
+                            label="username"
+                            type="text"
+                            name="username"
+                            className="validate"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                        />
+                        <TextInput
+                            s={12}
+                            label="password"
+                            type="password"
+                            name="password"
+                            className="validate"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                        />
                         <div className="row">
                             <Button onClick={this.handleSubmit} modal="close">Sign In</Button>
                         </div>
