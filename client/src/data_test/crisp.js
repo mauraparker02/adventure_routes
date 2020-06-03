@@ -76,5 +76,44 @@ module.exports = [
        }
     ],
     "status" : "OK"
- }
+ },
+ {
+   "candidates" : [
+      {
+         "formatted_address" : "2827 N Broadway, Chicago, IL 60657, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 41.9336311,
+               "lng" : -87.64429749999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 41.93502832989272,
+                  "lng" : -87.64308827010727
+               },
+               "southwest" : {
+                  "lat" : 41.93232867010728,
+                  "lng" : -87.64578792989272
+               }
+            }
+         },
+         "name" : "Renaldi's Pizza",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 960,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/100912741433006640285\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAuyTWZigtMYENbFvcc4VfXJf6LuZ7eDK6Rxmpjqc7a2IwjePJdLqOp0rY3Mxq7xyrVh3SB7RruJgqbWNswQNNg-peIC9-IfI8s9X4R-7iuun82QT63bpGjGSO-7wBK4T5EhCbU5IXMdJdZQT-D1NWAI5aGhSWnf1uIipwkVngS77lHS58RxgZRg",
+               "width" : 1440
+            }
+         ],
+         "rating" : 4.2
+      }
+   ],
+   "status" : "OK"
+}
 ]
