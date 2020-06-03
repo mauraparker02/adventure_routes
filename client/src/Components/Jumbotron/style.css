@@ -1,0 +1,10 @@
+#jumbotron {
+    background-color: lightblue;
+    color: white;
+}
+
+textarea {
+    border: none;
+    resize: none;
+    color: white;
+}
