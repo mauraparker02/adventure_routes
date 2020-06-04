@@ -4,6 +4,8 @@ import Jumbotron from './Components/Jumbotron';
 import axios from 'axios'; 
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-maps";
 import * as TestData from './data_test/crisp'; //eventually this data will actually come from an axios call
+import MapWithADirectionsRenderer from './Components/Directions'
+import { Modal } from 'react-materialize';
 
 // import './App.css';
 console.log(TestData)
@@ -105,8 +107,6 @@ class App extends Component {
 //where does this now go within App.js? 
 
 
-
-
   render() {
     const WrappedMap= withScriptjs(withGoogleMap(Map))
     return (
@@ -123,6 +123,7 @@ class App extends Component {
       lat={this.state.lat}
       lng={this.state.lng}
     />
+    {/* <MapWithADirectionsRenderer></MapWithADirectionsRenderer> */}
   </div>
       </div> 
     );
