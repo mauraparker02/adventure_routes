@@ -1,22 +1,57 @@
-import React, { useState, Component } from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from "react-google-maps";
-import { Button } from "react-materialize";
-import axios from "axios";
 
-import Navbar from "./Components/Navbar";
-import Jumbotron from "./Components/Jumbotron";
+import React, { useState, Component} from 'react';
+import Navbar from './Components/Navbar';
+import Jumbotron from './Components/Jumbotron';
+import axios from 'axios'; 
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-maps";
+import * as TestData from './data_test/crisp'; //eventually this data will actually come from an axios call
+import MapWithADirectionsRenderer from './Components/Directions'
+import { Modal, Button } from 'react-materialize';
 import NewRouteModal from "./Components/NewRouteModal";
-
 import './App.css';
-import * as crispData from './data_test/crisp.js';
 
+// import './App.css';
+console.log(TestData)
+
+
+function Map (props) {
+  // state={
+
+  // }
+
+  //logic goes here
+  // render(){
+  console.log(props.test)
+  return (
+    <GoogleMap
+      defaultZoom= {15}
+      defaultCenter= {{lat:props.lat, lng:props.lng}}
+      >
+        {TestData.map((place, i )=> (
+            <Marker 
+              key={place.candidates[0].name + i}
+              position={{lat: place.candidates[0].geometry.location.lat,
+              lng: place.candidates[0].geometry.location.lng}}
+              // onClick={() => {
+              //   setSelectedRestaurant(place.candidates[0])
+              // }}
+            />
+          )
+  )}
+    </GoogleMap>
+  )
+              }
+// }
 class App extends Component {
   state = {
     loggedIn: false,
     username: null,
+    user: null,
+    lat: 41.9361111,
+    lng: -87.6444389
     description: "",
     routes: [],
-    user: null
+
   };
   // constructor() {
   //   super();
@@ -26,15 +61,19 @@ class App extends Component {
   //     user: null
   //   }
 
-    //this.getUser = this.getUser.bind(this);
-    //this.componentDidMount = this.componentDidMount.bind(this);
-    //this.updateUser = this.updateUser.bind(this);
+  //   this.getUser = this.getUser.bind(this);
+  //   this.componentDidMount = this.componentDidMount.bind(this);
+  //   this.updateUser = this.updateUser.bind(this);
 
 
   componentDidMount() {
     this.getUser();
   }
-
+//   Map= ()=>{
+//   // const [selectedRestaurant, setSelectedRestaurant]= useState(null);
+//   // console.log(selectedRestaurant)
+  
+// }
   updateUser = (userObject) =>{
     this.setState(userObject);
   }
@@ -65,16 +104,36 @@ class App extends Component {
     });
   }
 
+// Map Function
+//onclick event to render it 
+
+
+
+
+//where does this now go within App.js? 
   addRoute = (route) => {
     this.setState()
   }
 
   render() {
+    const WrappedMap= withScriptjs(withGoogleMap(Map))
     return (
       <div>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
         <Jumbotron />
         {this.state.loggedIn && <p>Hello, {this.state.username}!</p>}
+        <div style={{width: "70vw", height: "100vh" }}>
+    <WrappedMap
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCZGl5xRRXsZcx3O3C4-YyfYT9jZVP5AVw`}
+      loadingElement={<div style={{ height: `100%` }} />}
+      containerElement={<div style={{ height: `100%` }} />}
+      mapElement={<div style={{ height: `100%` }} />}
+      lat={this.state.lat}
+      lng={this.state.lng}
+    />
+    {/* <MapWithADirectionsRenderer></MapWithADirectionsRenderer> */}
+  </div>
+      </div> 
         <NewRouteModal routes={this.state.routes}/>
       </div>
     );
