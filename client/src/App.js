@@ -1,3 +1,4 @@
+
 import React, { useState, Component} from 'react';
 import Navbar from './Components/Navbar';
 import Jumbotron from './Components/Jumbotron';
@@ -5,7 +6,9 @@ import axios from 'axios';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-maps";
 import * as TestData from './data_test/crisp'; //eventually this data will actually come from an axios call
 import MapWithADirectionsRenderer from './Components/Directions'
-import { Modal } from 'react-materialize';
+import { Modal, Button } from 'react-materialize';
+import NewRouteModal from "./Components/NewRouteModal";
+import './App.css';
 
 // import './App.css';
 console.log(TestData)
@@ -39,8 +42,6 @@ function Map (props) {
   )
               }
 // }
-
-
 class App extends Component {
   state = {
     loggedIn: false,
@@ -48,6 +49,9 @@ class App extends Component {
     user: null,
     lat: 41.9361111,
     lng: -87.6444389
+    description: "",
+    routes: [],
+
   };
   // constructor() {
   //   super();
@@ -85,7 +89,9 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
-          user: response.data.user
+          user: response.data.user,
+          description: response.data.user.description,
+          routes: response.data.user.routes
         });
       }
       else {
@@ -105,7 +111,9 @@ class App extends Component {
 
 
 //where does this now go within App.js? 
-
+  addRoute = (route) => {
+    this.setState()
+  }
 
   render() {
     const WrappedMap= withScriptjs(withGoogleMap(Map))
@@ -126,6 +134,8 @@ class App extends Component {
     {/* <MapWithADirectionsRenderer></MapWithADirectionsRenderer> */}
   </div>
       </div> 
+        <NewRouteModal routes={this.state.routes}/>
+      </div>
     );
   }
 }
