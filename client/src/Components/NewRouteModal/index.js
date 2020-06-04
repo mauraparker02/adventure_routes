@@ -174,6 +174,7 @@ class NewRouteModal extends Component {
     
                         <Button>Add Another Location</Button>
                         <Button modal="close" onClick={this.handleSubmit}>Add Route</Button>
+                        
                     </form>
                 </div>
             </Modal>

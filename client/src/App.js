@@ -22,6 +22,7 @@ function Map (props) {
   //logic goes here
   // render(){
   console.log(props.test)
+
   return (
     <GoogleMap
       defaultZoom= {15}
@@ -48,7 +49,7 @@ class App extends Component {
     username: null,
     user: null,
     lat: 41.9361111,
-    lng: -87.6444389
+    lng: -87.6444389,
     description: "",
     routes: [],
 
@@ -123,6 +124,7 @@ class App extends Component {
         <Jumbotron />
         {this.state.loggedIn && <p>Hello, {this.state.username}!</p>}
         <div style={{width: "70vw", height: "100vh" }}>
+    <Modal header="Map Header" trigger={}>
     <WrappedMap
       googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCZGl5xRRXsZcx3O3C4-YyfYT9jZVP5AVw`}
       loadingElement={<div style={{ height: `100%` }} />}
@@ -131,11 +133,19 @@ class App extends Component {
       lat={this.state.lat}
       lng={this.state.lng}
     />
+    </Modal>
+    {/* <WrappedMap
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCZGl5xRRXsZcx3O3C4-YyfYT9jZVP5AVw`}
+      loadingElement={<div style={{ height: `100%` }} />}
+      containerElement={<div style={{ height: `100%` }} />}
+      mapElement={<div style={{ height: `100%` }} />}
+      lat={this.state.lat}
+      lng={this.state.lng}
+    /> */}
     {/* <MapWithADirectionsRenderer></MapWithADirectionsRenderer> */}
   </div>
+  <NewRouteModal routes={this.state.routes}/>
       </div> 
-        <NewRouteModal routes={this.state.routes}/>
-      </div>
     );
   }
 }
