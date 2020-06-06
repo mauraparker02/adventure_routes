@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Modal, Button, TextInput, TextInputProps } from "react-materialize";
+import { Modal, Button, TextInput } from "react-materialize";
 import axios from "axios";
-
-const signUpTrigger = <a href="">Sign Up</a>;
 
 class SignUpNav extends Component {
 	constructor() {
@@ -58,6 +56,7 @@ class SignUpNav extends Component {
 	}
     
     render() {
+		const signUpTrigger = this.props.trigger;
         return (
             <Modal header="Sign Up" trigger={signUpTrigger}>
                 <div className="row">
