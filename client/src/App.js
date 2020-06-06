@@ -22,7 +22,7 @@ class App extends Component {
     this.getUser();
   }
 
-  updateUser = (userObject) => {
+  updateUser = userObject => {
     this.setState(userObject);
   }
 
@@ -52,15 +52,21 @@ class App extends Component {
     });
   }
 
-  //where does this now go within App.js? 
+  addRoute = routeObject => {
+    axios.post('/user/routes').then(() => {
+      this.setState({
+        routes: this.state.routes.push(routeObject)
+      })
+    }).catch(err => console.log(err));
+  }
 
   render() {
     const addRouteTrigger = <Button>Add Route</Button>;
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        <Jumbotron />
-        <NewRouteModal routes={this.state.routes} trigger={addRouteTrigger}/>
+        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
+        <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
       </div>
     );
   }

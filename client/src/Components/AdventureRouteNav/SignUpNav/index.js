@@ -3,21 +3,16 @@ import { Modal, Button, TextInput } from "react-materialize";
 import axios from "axios";
 
 class SignUpNav extends Component {
-	constructor() {
-		super();
-		this.state = {
-			username: '',
-			password: '',
-			description: '',
-			routes: [],
-			confirmPassword: '',
-			redirectTo: null
-
-		}
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+	state = {
+		username: '',
+		password: '',
+		description: '',
+		routes: [],
+		confirmPassword: '',
+		redirectTo: null
 	}
-	handleChange(event) {
+
+	handleChange = event => {
 		console.log("Changing! " + event.target.value);
 		this.setState({
 			[event.target.name]: event.target.value
@@ -25,7 +20,7 @@ class SignUpNav extends Component {
 		console.log("Username: " + this.state.username);
 		console.log("Password: " + this.state.password);
 	}
-	handleSubmit(event) {
+	handleSubmit = event => {
 		event.preventDefault();
 		console.log('sign-up handleSubmit, username: ');
 		console.log("Username: " + this.state.username);
@@ -61,24 +56,24 @@ class SignUpNav extends Component {
             <Modal header="Sign Up" trigger={signUpTrigger}>
                 <div className="row">
                     <form className="col s12">
-							<TextInput
-								s={12}
-								label="username"
-								type="text"
-								name="username"
-								className="validate"
-								value={this.state.username}
-								onChange={this.handleChange}
-							/>
-							<TextInput 
-								s={12}
-								label="password"
-								type="password"
-								name="password"
-								className="validate"
-								value={this.state.password}
-								onChange={this.handleChange}
-							/>
+						<TextInput
+							s={12}
+							label="username"
+							type="text"
+							name="username"
+							className="validate"
+							value={this.state.username}
+							onChange={this.handleChange}
+						/>
+						<TextInput 
+							s={12}
+							label="password"
+							type="password"
+							name="password"
+							className="validate"
+							value={this.state.password}
+							onChange={this.handleChange}
+						/>
                         <div className="row">
                             <Button onClick={this.handleSubmit} modal="close">Sign Up</Button>
                         </div>

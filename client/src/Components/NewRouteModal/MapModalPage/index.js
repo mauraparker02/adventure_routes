@@ -15,6 +15,7 @@ class MapModalPage extends Component {
                 <h2>Map</h2>
                 <Map
                     origin={this.props.origin}
+                    waypoints={this.props.waypoints}
                     destination={this.props.destination}
                 />
                 <Button onClick={this.handleModalSubmit}>Back to Form</Button>
