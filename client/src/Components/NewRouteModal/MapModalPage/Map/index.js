@@ -103,12 +103,14 @@ class Map extends Component {
                             {
                                 (
                                     this.props.destination !== '' &&
+                                    this.props.waypoints !== [] &&
                                     this.props.origin !== ''
                                 ) && (
                                     <DirectionsService
                                         // required
                                         options={{
                                             origin: this.props.origin,
+                                            waypoints: this.props.waypoints,
                                             destination: this.props.destination,
                                             travelMode: this.state.travelMode
                                         }}

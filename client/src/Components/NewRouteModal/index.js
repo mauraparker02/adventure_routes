@@ -10,6 +10,7 @@ class NewRouteModal extends Component {
     state = {
         modalPage: true,
         origin: '',
+        waypoints: [],
         destination: ''
     }
 
@@ -23,12 +24,14 @@ class NewRouteModal extends Component {
                 {this.state.modalPage ? (
                     <FormModalPage
                         update={this.update}
+                        addRoute={this.props.addRoute}
                     />
                 ) : (
                     <MapModalPage
                         update={this.update}
                         modalstate={this.state.modalPage}
                         origin={this.state.origin}
+                        waypoints={this.state.waypoints}
                         destination={this.state.destination}
                     />
                 )}

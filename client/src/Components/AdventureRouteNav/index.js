@@ -3,6 +3,7 @@ import { Navbar, Icon, NavItem } from "react-materialize";
 import axios from "axios";
 import SignUpNav from "./SignUpNav";
 import SignInNav from "./SignInNav";
+import "./style.css"
 
 
 class AdventureRouteNav extends Component {
@@ -38,9 +39,9 @@ class AdventureRouteNav extends Component {
     return (
       <Navbar
         alignLinks="right"
-        brand={<a className="brand-logo" href="../../icons/large_logo"></a>}
+        brand={<a><img className="brand-logo" src="/icons/small_logo.png" width="auto" height="60px"/></a>}
         id="mobile-nav"
-        menuIcon={<Icon children="Icon type:">---</Icon>}
+        menuIcon={<Icon><div className="burger"><img className="brand-logo" src="/icons/hamburger.png" width="auto" height="25px"/></div></Icon>}
         options={{
           draggable: true,
           edge: 'left',

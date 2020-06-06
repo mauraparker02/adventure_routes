@@ -3,19 +3,13 @@ import { Modal, Button, TextInput } from "react-materialize";
 import axios from "axios";
 
 class SignInNav extends Component {
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            password: '',
-            redirectTo: null
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-
+    state = {
+        username: '',
+        password: '',
+        redirectTo: null
     }
 
-    handleChange(event) {
+    handleChange = event => {
         console.log("Changing!" + event.target.value);
         this.setState({
             [event.target.name]: event.target.value
@@ -24,7 +18,7 @@ class SignInNav extends Component {
         console.log("Password: " + this.state.password);
     }
 
-    handleSubmit(event) {
+    handleSubmit = event => {
         event.preventDefault();
         console.log('handleSubmit');
 

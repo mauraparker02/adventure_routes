@@ -44,3 +44,11 @@ nav {
 .modal {
    border-radius: 100px;    
 }; 
+
+.burger {
+  display: block;
+  text-align: center; 
+  height: 64px; 
+  width: auto; 
+  padding: 20px
+}
