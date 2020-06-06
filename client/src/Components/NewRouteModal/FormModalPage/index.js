@@ -4,27 +4,69 @@ import { Button, TextInput, Textarea, Select } from "react-materialize";
 
 class FormModalPage extends Component {
     handleModalSubmit = () => {
+        this.onClick();
         this.props.update({
             modalPage: false,
         });
-        this.onClick();
     }
 
     onClick = () => {
-        if (this.origin.value !== '' && this.destination.value !== '') {
+        if (this.origin.value !== '' &&
+            this.origin.waypoints !== [] &&
+            this.destination.value !== '') {
+            
+            console.log(`Origin: ${this.origin.value}`);
+            console.log(`Waypoint: ${this.waypoint1.value} ${this.waypoint2.value}`)
+            console.log(`Destination: ${this.destination.value}`);
+
             this.props.update({
                 origin: this.origin.value,
+                waypoints: [
+                    { location: this.waypoint1.value },
+                    { location: this.waypoint2.value }
+                ],
                 destination: this.destination.value
             });
+
+            this.props.addRoute(
+                {
+                    name: this.routeName.value,
+                    description: "",
+                    activities: "",
+                    price_category: "",
+                    route: {
+                        origin: this.origin.value,
+                        waypoints: [ 
+                            { location: this.waypoint1.value },
+                            { location: this.waypoint2.value }
+                        ],
+                        destination: this.destination.value
+                    }
+                }
+            );
         }
+
+        var routeObject = { }
+    }
+
+    getRouteName = ref => {
+        this.routeName = ref;
+    }
+
+    getDescription = ref => {
+        this.description = ref;
     }
 
     getOrigin = ref => {
         this.origin = ref;
     }
 
-    getMidpoint = ref => {
-        this.midpoint = ref;
+    getWaypoint1 = ref => {
+        this.waypoint1 = ref;
+    }
+
+    getWaypoint2 = ref => {
+        this.waypoint2 = ref;
     }
 
     getDestination = ref => {
@@ -43,12 +85,15 @@ class FormModalPage extends Component {
                             label="route name"
                             type='text'
                             s={12}
+                            ref={this.getRouteName}
                         />
 
                         <Textarea
                             id="Textarea-12"
                             s={12}
                             label="route description"
+                            type='text'
+                            ref={this.getDescription}
                         />
 
                         <Select
@@ -142,16 +187,34 @@ class FormModalPage extends Component {
                         <TextInput
                             id='ORIGIN'
                             className='form-control'
-                            label="origin"
+                            label="start"
                             type='text'
                             s={12}
                             ref={this.getOrigin}
                         />
 
                         <TextInput
+                            id='WAYPOINT'
+                            className='form-control'
+                            label="stop"
+                            type='text'
+                            s={12}
+                            ref={this.getWaypoint1}
+                        />
+
+                        <TextInput
+                            id='WAYPOINT'
+                            className='form-control'
+                            label="stop"
+                            type='text'
+                            s={12}
+                            ref={this.getWaypoint2}
+                        />
+
+                        <TextInput
                             id='DESTINATION'
                             className='form-control'
-                            label="destination"
+                            label="end"
                             type='text'
                             s={12}
                             ref={this.getDestination}
