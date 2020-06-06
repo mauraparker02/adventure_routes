@@ -5,3 +5,11 @@
     width: auto; 
     padding: 20px
   }
+
+  .logo-wrap {
+    display: block;
+    text-align: center; 
+    height: 64px; 
+    width: 20px; 
+    padding: 20px
+  }
