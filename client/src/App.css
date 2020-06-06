@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+nav {
+ background-color: #fe9800; 
+}; 
+
+.modal {
+   border-radius: 100px;    
+}; 
+
+.burger {
+  display: block;
+  text-align: center; 
+  height: 64px; 
+  width: auto; 
+  padding: 20px
+}

@@ -18,7 +18,7 @@ class MapModalPage extends Component {
                     waypoints={this.props.waypoints}
                     destination={this.props.destination}
                 />
-                <Button onClick={this.handleModalSubmit}>Back to Form</Button>
+                <Button onClick={this.handleModalSubmit} waves="#orange">Back to Form</Button>
             </div>
         );
     }
