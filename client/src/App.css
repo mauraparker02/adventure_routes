@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+nav {
+ background-color: #fe9800; 
+}; 
+
+.modal {
+   border-radius: 100px;    
+}; 

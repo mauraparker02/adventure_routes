@@ -17,7 +17,7 @@ class MapModalPage extends Component {
                     origin={this.props.origin}
                     destination={this.props.destination}
                 />
-                <Button onClick={this.handleModalSubmit}>Back to Form</Button>
+                <Button onClick={this.handleModalSubmit} waves="#orange">Back to Form</Button>
             </div>
         );
     }

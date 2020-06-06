@@ -159,7 +159,7 @@ class FormModalPage extends Component {
                     </form>
                 </div>
 
-                <Button onClick={this.handleModalSubmit}>Render Map</Button>
+                <Button onClick={this.handleModalSubmit} waves="#orange">Render Map</Button>
             </div>
         )
     }

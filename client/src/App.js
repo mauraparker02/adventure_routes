@@ -55,7 +55,9 @@ class App extends Component {
   //where does this now go within App.js? 
 
   render() {
-    const addRouteTrigger = <Button>Add Route</Button>;
+    const addRouteTrigger = <Button waves='light' style={{
+      backgroundColor: 'orange'
+    }}>Add Route</Button>;
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
