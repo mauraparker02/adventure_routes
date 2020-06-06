@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/mauraparker02/adventure_routes#readme",
   "dependencies": {
+    "@react-google-maps/api": "^1.9.5",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
