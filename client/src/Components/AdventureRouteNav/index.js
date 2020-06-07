@@ -39,9 +39,9 @@ class AdventureRouteNav extends Component {
     return (
       <Navbar
         alignLinks="right"
-        brand={<div className="logo-wrap"><a><img className="brand-logo" src="/icons/small_logo.png" width="auto" height="60px"/></a></div>}
+        brand={<div className="logo-wrap" href=""><a><img className="brand-logo"  alt="" src="/icons/small_logo.png" width="auto" height="60px"/></a></div>}
         id="mobile-nav"
-        menuIcon={<Icon><div className="burger"><img className="brand-logo" src="/icons/hamburger.png" width="auto" height="25px"/></div></Icon>}
+        menuIcon={<Icon><div className="burger" href=""><img className="brand-logo" alt="" src="/icons/hamburger.png" width="auto" height="25px"/></div></Icon>}
         options={{
           draggable: true,
           edge: 'left',

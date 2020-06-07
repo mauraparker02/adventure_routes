@@ -22,7 +22,9 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 username: username,
-                password: password
+                password: password,
+                description: "",
+                routes: []
             });
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)
@@ -34,7 +36,7 @@ router.post('/', (req, res) => {
 
 router.post(
     '/login',
-    function (req, res, next) {
+    (req, res, next) => {
         console.log('routes/user.js, login, req.body: ');
         console.log(req.body);
         next();
@@ -47,7 +49,7 @@ router.post(
         };
         res.send(userInfo);
     }
-)
+);
 
 router.get('/user/', (req, res, next) => {
     console.log('===== user!!======')
@@ -57,7 +59,7 @@ router.get('/user/', (req, res, next) => {
     } else {
         res.json({ user: null })
     }
-})
+});
 
 router.post('/logout', (req, res) => {
     if (req.user) {
@@ -66,6 +68,19 @@ router.post('/logout', (req, res) => {
     } else {
         res.send({ msg: 'no user to log out' })
     }
-})
+});
+
+router.post('/routes/:id', (req, res) => {
+    console.log("Route to add to db: " + req.body.routes);
+    User.findByIdAndUpdate({
+        _id: req.params.id
+    }, {
+        $push: {
+            routes: req.body.routes
+        }
+    })
+    .then(route => res.json(route))
+    .catch(err => res.json(err));
+});
 
 module.exports = router;
