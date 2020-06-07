@@ -38,9 +38,6 @@ class SignUpNav extends Component {
 				if (!response.data.errmsg) {
 					console.log('successful signup')
 					this.props.history.push('/login');
-					// this.setState({ //redirect to login page
-					// 	redirectTo: ' /login'
-					// })
 				} else {
 					console.log('username already taken')
 				}

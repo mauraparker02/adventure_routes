@@ -3,6 +3,11 @@ import { Button, TextInput, Textarea, Select } from "react-materialize";
 
 
 class FormModalPage extends Component {
+    state = {
+        price_category: '',
+        activities: []
+    }
+
     handleModalSubmit = () => {
         this.onClick();
         this.props.update({
@@ -31,9 +36,9 @@ class FormModalPage extends Component {
             this.props.addRoute(
                 {
                     name: this.routeName.value,
-                    description: "",
-                    activities: "",
-                    price_category: "",
+                    description: this.description.value,
+                    activities: this.state.activities,
+                    price_category: this.state.price_category,
                     route: {
                         origin: this.origin.value,
                         waypoints: [ 
@@ -45,8 +50,14 @@ class FormModalPage extends Component {
                 }
             );
         }
+    }
 
-        var routeObject = { }
+    changePriceState = ( { target: { value } } ) => {
+        this.setState(
+            () => (
+                { price_category: value }
+            )
+        )
     }
 
     getRouteName = ref => {
@@ -89,7 +100,8 @@ class FormModalPage extends Component {
                         />
 
                         <Textarea
-                            id="Textarea-12"
+                            id="ROUTE-DESCRIPTION"
+                            className='form-control'
                             s={12}
                             label="route description"
                             type='text'
@@ -99,6 +111,7 @@ class FormModalPage extends Component {
                         <Select
                             id="activity-select"
                             s={6}
+                            // onChange={this.changeActivityState}
                             multiple options={{
                                 classes: '',
                                 dropdownOptions: {
@@ -116,7 +129,7 @@ class FormModalPage extends Component {
                                     outDuration: 250
                                 }
                             }}
-                            value={['']}
+                            value={[]}
                             >
                             <option
                                 disabled
@@ -124,19 +137,19 @@ class FormModalPage extends Component {
                             >
                                 Pick activity categories
                             </option>
-                            <option value="1">
+                            <option value="Music">
                                 Music
                             </option>
-                            <option value="2">
+                            <option value="Food/Drink">
                                 Food/Drink
                             </option>
-                            <option value="3">
+                            <option value="Sports">
                                 Sports
                             </option>
-                            <option value="4">
+                            <option value="Comedy">
                                 Comedy
                             </option>
-                            <option value="5">
+                            <option value="Movie">
                                 Movie
                             </option>
                         </Select>
@@ -145,6 +158,7 @@ class FormModalPage extends Component {
                             id="activity-select"
                             s={6}
                             multiple={false}
+                            onChange={this.changePriceState}
                             options={{
                                 classes: '',
                                 dropdownOptions: {
@@ -162,26 +176,13 @@ class FormModalPage extends Component {
                                     outDuration: 250
                                 }
                             }}
-                            value={['']}
-                            >
-                            <option
-                                disabled
-                                value=""
-                            >
-                                Pick price category
-                            </option>
-                            <option value="1">
-                                $
-                            </option>
-                            <option value="2">
-                                $$
-                            </option>
-                            <option value="3">
-                                $$$
-                            </option>
-                            <option value="4">
-                                $$$$
-                            </option>
+                            value='free'
+                        >
+                            <option value="free">Pick price category</option>
+                            <option value="$" selected="false">$</option>
+                            <option value="$$" selected="false">$$</option>
+                            <option value="$$$" selected="false">$$$</option>
+                            <option value="$$$$" selected="false">$$$$</option>
                         </Select>
 
                         <TextInput
@@ -222,7 +223,7 @@ class FormModalPage extends Component {
                     </form>
                 </div>
 
-                <Button onClick={this.handleModalSubmit} waves="#orange">Render Map</Button>
+                <Button onClick={this.handleModalSubmit} waves="orange">Render Map</Button>
             </div>
         )
     }
