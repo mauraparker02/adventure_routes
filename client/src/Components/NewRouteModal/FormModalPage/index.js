@@ -4,31 +4,43 @@ import { Button, TextInput, Textarea, Select } from "react-materialize";
 
 class FormModalPage extends Component {
     state = {
+        description: '',
         price_category: '',
-        activities: []
+        activities: '',
+        waypoint1: '',
+        waypoint2: ''
     }
 
     handleModalSubmit = () => {
-        this.onClick();
-        this.props.update({
-            modalPage: false,
-        });
+        if (this.origin.value !== '' &&
+            this.state.waypoint1 !== '' &&
+            this.state.waypoint2 !== '' &&
+            this.destination.value !== '') {
+                this.onClick();
+                this.props.update({
+                    modalPage: false,
+                });
+        }
+        else {
+            console.log("Not all locations added!");
+        }
     }
 
     onClick = () => {
         if (this.origin.value !== '' &&
-            this.origin.waypoints !== [] &&
+            this.state.waypoint1 !== '' &&
+            this.state.waypoint2 !== '' &&
             this.destination.value !== '') {
             
             console.log(`Origin: ${this.origin.value}`);
-            console.log(`Waypoint: ${this.waypoint1.value} ${this.waypoint2.value}`)
+            console.log(`Waypoint: ${this.state.waypoint1} ${this.state.waypoint2}`)
             console.log(`Destination: ${this.destination.value}`);
 
             this.props.update({
                 origin: this.origin.value,
                 waypoints: [
-                    { location: this.waypoint1.value },
-                    { location: this.waypoint2.value }
+                    { location: this.state.waypoint1 },
+                    { location: this.state.waypoint2 }
                 ],
                 destination: this.destination.value
             });
@@ -36,14 +48,14 @@ class FormModalPage extends Component {
             this.props.addRoute(
                 {
                     name: this.routeName.value,
-                    description: this.description.value,
+                    description: this.state.description,
                     activities: this.state.activities,
                     price_category: this.state.price_category,
                     route: {
                         origin: this.origin.value,
                         waypoints: [ 
-                            { location: this.waypoint1.value },
-                            { location: this.waypoint2.value }
+                            { location: this.state.waypoint1 },
+                            { location: this.state.waypoint2 }
                         ],
                         destination: this.destination.value
                     }
@@ -52,24 +64,29 @@ class FormModalPage extends Component {
         }
     }
 
+    changeDescriptionState = ( { target: { value } } ) => {
+        this.setState( { description: value } );
+    }
+
     changePriceState = ( { target: { value } } ) => {
-        this.setState(
-            () => (
-                { price_category: value }
-            )
-        )
+        this.setState( { price_category: value } );
     }
 
     getRouteName = ref => {
         this.routeName = ref;
     }
 
-    getDescription = ref => {
-        this.description = ref;
+    getOrigin = ref => {
+        console.log("Description: " + ref)
+        this.origin = ref;
     }
 
-    getOrigin = ref => {
-        this.origin = ref;
+    changeWaypoint1State = ( { target: { value } } ) => {
+        this.setState( { waypoint1: value } );
+    }
+
+    changeWaypoint2State = ( { target: { value } } ) => {
+        this.setState( { waypoint2: value } );
     }
 
     getWaypoint1 = ref => {
@@ -105,14 +122,15 @@ class FormModalPage extends Component {
                             s={12}
                             label="route description"
                             type='text'
-                            ref={this.getDescription}
+                            onChange={this.changeDescriptionState}
+                            value={this.state.description}
                         />
 
                         <Select
                             id="activity-select"
                             s={6}
-                            // onChange={this.changeActivityState}
-                            multiple options={{
+                            onChange={this.changeActivityState}
+                            multiple={false} options={{
                                 classes: '',
                                 dropdownOptions: {
                                     alignment: 'left',
@@ -129,7 +147,7 @@ class FormModalPage extends Component {
                                     outDuration: 250
                                 }
                             }}
-                            value={[]}
+                            value={['']}
                             >
                             <option
                                 disabled
@@ -200,7 +218,8 @@ class FormModalPage extends Component {
                             label="stop"
                             type='text'
                             s={12}
-                            ref={this.getWaypoint1}
+                            onChange={this.changeWaypoint1State}
+                            value={this.state.waypoint1}
                         />
 
                         <TextInput
@@ -209,7 +228,8 @@ class FormModalPage extends Component {
                             label="stop"
                             type='text'
                             s={12}
-                            ref={this.getWaypoint2}
+                            onChange={this.changeWaypoint2State}
+                            value={this.state.waypoint2}
                         />
 
                         <TextInput
@@ -224,6 +244,8 @@ class FormModalPage extends Component {
                 </div>
 
                 <Button onClick={this.handleModalSubmit} waves="orange">Render Map</Button>
+
+                <p class="error"></p>
             </div>
         )
     }
