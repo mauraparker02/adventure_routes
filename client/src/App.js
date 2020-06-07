@@ -4,7 +4,7 @@ import axios from 'axios';
 import AdventureRouteNav from './Components/AdventureRouteNav';
 import Jumbotron from './Components/Jumbotron';
 import NewRouteModal from "./Components/NewRouteModal";
-import FavRouteCard from "./Components/FavRouteCard";
+import FavRouteSection from "./Components/FavRouteSection";
 import './App.css';
 
 class App extends Component {
@@ -69,7 +69,7 @@ class App extends Component {
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
         <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
         <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
-        <FavRouteCard></FavRouteCard>
+        <FavRouteSection></FavRouteSection>
       </div>
     );
   }
