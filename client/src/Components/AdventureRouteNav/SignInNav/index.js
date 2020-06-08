@@ -10,12 +10,9 @@ class SignInNav extends Component {
     }
 
     handleChange = event => {
-        console.log("Changing!" + event.target.value);
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log("Username: " + this.state.username);
-        console.log("Password: " + this.state.password);
     }
 
     handleSubmit = event => {
@@ -32,10 +29,13 @@ class SignInNav extends Component {
                 console.log(response)
                 console.log(response.status);
                 if (response.status === 200) {
+                    console.log(response.data);
                     // update App.js state
                     this.props.updateUser({
                         loggedIn: true,
-                        username: response.data.username
+                        username: response.data.username,
+                        user: response.data.user,
+                        routes: response.data.user.routes
                     })
                     // update the state to redirect to home
                     this.setState({

@@ -2,14 +2,14 @@ import React, { Component } from "react";
 
 import FavRouteCard from "./FavRouteCard";
 
-class FavRouteSection extends Component {
-    render() {
-        return (
-            <div>
 
-            </div>
-        )
-    }
+
+function FavRouteSection(props) {
+    return (
+        <div>
+            {(props.routes !== []) && (props.routes.map(route => <FavRouteCard username={props.username} route={route}/>))}
+        </div>
+    )
 }
 
 export default FavRouteSection;

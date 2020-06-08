@@ -24,8 +24,8 @@ function FavRouteCard (props){
         </div>
         </div>
         <div className="card-content">
-        <span className="card-title">{props.name}</span>
-          <p>{props.description}</p>
+        <span className="card-title">{props.route.name}</span>
+          <p>{props.route.description}</p>
         </div>
         <div className="card-action">
           {/* <button type="submit"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></button> */}
