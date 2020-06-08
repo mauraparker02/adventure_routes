@@ -44,18 +44,52 @@ router.post(
     passport.authenticate('local'),
     (req, res) => {
         console.log('logged in', req.user);
-        var userInfo = {
-            username: req.user.username
-        };
-        res.send(userInfo);
+        if(req.user){
+            console.log("Login USER data Query MongoDB")
+            User.findOne({username: req.user.username})
+        .then(response => {
+            console.log("MONGODB USER FIND?LOGIN!");
+            if(response.password === req.user.password) {
+                let responseObj = {
+                    id: response._id,
+                    username: response.username,
+                    routes: response.routes,
+                    description: response.description
+                };
+                console.log("Without password:")
+                console.log(responseObj);
+                res.send({user:responseObj, username:responseObj.username});
+            }
+            else {
+                res.json( { user: null } );
+            }
+        });
+        }
+        // var userInfo = {
+        //     username: req.user.username
+        // };
+        // res.send(userInfo);
     }
 );
 
-router.get('/user/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     console.log('===== user!!======')
     console.log(req.user)
     if (req.user) {
-        res.json({ user: req.user })
+        console.log("TRYING TO GET USER PLEASE");
+        // Retrieve rest of user info once valid
+        User.findOne({username: req.user.username})
+        .then(response => {
+            console.log("User here!");
+            if(response.password === req.user.password) {
+                let responseObj = response;
+                delete responseObj.password;
+                res.json(responseObj);
+            }
+            else {
+                res.json( { user: null } );
+            }
+        });
     } else {
         res.json({ user: null })
     }

@@ -21,12 +21,16 @@ class App extends Component {
   }
 
   updateUser = userObject => {
+    console.log("Update the user: ");
+    console.log(userObject);
     this.setState(userObject);
+    console.log("global state user");
+    console.log(this.state);
     this.getUser();
   }
 
   getUser = () => {
-    axios.get('/user/').then(response => {
+    axios.get('/user').then(response => {
       console.log('Get user response: ');
       console.log(response.data);
       if (response.data.user) {
@@ -35,7 +39,7 @@ class App extends Component {
           username: response.data.user.username,
           user: response.data.user,
           description: response.data.user.description,
-          routes: response.data.user.routes
+          routes: response.data.user.user.routes
         });
       }
       else {
@@ -50,8 +54,8 @@ class App extends Component {
 
   addRoute = routeObject => {
     console.log("User object to route search:");
-    console.log(this.state.user);
-    const id = "5edc48b9f4b0419af274c9dc";
+    console.log(this.state.user.id);
+    const id = this.state.user.id;//"5edd39c830eb27ea82204d1e";
     axios.post('/user/routes/' + id, {
       routes: [routeObject]
     })
@@ -63,13 +67,19 @@ class App extends Component {
   }
 
   render() {
-    const addRouteTrigger = <Button waves='orange'>Add Route</Button>;
+    console.log("Current state:");
+    console.log(this.state);
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
-        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
-        <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
-        <FavRouteSection></FavRouteSection>
+        <Jumbotron
+          loggedIn={this.state.loggedIn}
+          username={this.state.username}
+          routes={this.state.routes}
+          addRoute={this.addRoute}
+        />
+        {/* <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/> */}
+        <FavRouteSection routes={this.state.routes}/>
       </div>
     );
   }

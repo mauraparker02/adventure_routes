@@ -27,3 +27,11 @@ textarea {
     text-align: center;
 }
 
+#search-route {
+    color: #ffffff;
+}
+
+#search-route-group {
+    margin: auto;
+    width: 70%;
+}
