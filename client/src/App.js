@@ -68,7 +68,7 @@ class App extends Component {
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
         <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
-        <FavRouteCard></FavRouteCard>
+    <FavRouteCard routes={this.state.routes}></FavRouteCard>
       </div>
     );
   }
