@@ -36,6 +36,7 @@ app.use(passport.session()); // calls the deserializeUser
 
 
 app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "client", "build", "public")));
 
 // Routes
 app.get("*", (req, res) => {
