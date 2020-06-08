@@ -7,69 +7,66 @@ class FormModalPage extends Component {
         description: '',
         price_category: '',
         activities: '',
+        origin: '',
         waypoint1: '',
-        waypoint2: ''
+        waypoint2: '',
+        destination: ''
     }
 
     handleModalSubmit = () => {
-        if (this.origin.value !== '' &&
+        if (this.state.origin !== '' &&
             this.state.waypoint1 !== '' &&
             this.state.waypoint2 !== '' &&
-            this.destination.value !== '') {
-                this.onClick();
-                this.props.update({
-                    modalPage: false,
-                });
+            this.state.destination !== '') {
+            console.log(`Origin: ${this.state.origin}`);
+            console.log(`Waypoint: ${this.state.waypoint1} ${this.state.waypoint2}`)
+            console.log(`Destination: ${this.state.destination}`);
+
+            this.props.update({
+                origin: this.state.origin,
+                waypoints: [
+                    { location: this.state.waypoint1 },
+                    { location: this.state.waypoint2 }
+                ],
+                destination: this.state.destination,
+                modalPage: false
+            });
+
+            this.props.addRoute({
+                name: this.routeName.value,
+                description: this.state.description,
+                activities: this.state.activities,
+                price_category: this.state.price_category,
+                route: {
+                    origin: this.state.origin,
+                    waypoints: [
+                        { location: this.state.waypoint1 },
+                        { location: this.state.waypoint2 }
+                    ],
+                    destination: this.state.destination
+                }
+            });
         }
+        
         else {
             console.log("Not all locations added!");
         }
     }
 
-    onClick = () => {
-        if (this.origin.value !== '' &&
-            this.state.waypoint1 !== '' &&
-            this.state.waypoint2 !== '' &&
-            this.destination.value !== '') {
-            
-            console.log(`Origin: ${this.origin.value}`);
-            console.log(`Waypoint: ${this.state.waypoint1} ${this.state.waypoint2}`)
-            console.log(`Destination: ${this.destination.value}`);
-
-            this.props.update({
-                origin: this.origin.value,
-                waypoints: [
-                    { location: this.state.waypoint1 },
-                    { location: this.state.waypoint2 }
-                ],
-                destination: this.destination.value
-            });
-
-            this.props.addRoute(
-                {
-                    name: this.routeName.value,
-                    description: this.state.description,
-                    activities: this.state.activities,
-                    price_category: this.state.price_category,
-                    route: {
-                        origin: this.origin.value,
-                        waypoints: [ 
-                            { location: this.state.waypoint1 },
-                            { location: this.state.waypoint2 }
-                        ],
-                        destination: this.destination.value
-                    }
-                }
-            );
-        }
+    changeDescriptionState = ({ target: { value } }) => {
+        this.setState({ description: value });
     }
 
-    changeDescriptionState = ( { target: { value } } ) => {
-        this.setState( { description: value } );
+    changePriceState = ({ target: { value } }) => {
+        this.setState({ price_category: value });
     }
 
-    changePriceState = ( { target: { value } } ) => {
-        this.setState( { price_category: value } );
+    changeOriginState = ({ target: { value } }) => {
+        this.setState({ origin: value });
+    }
+
+    changeDestinationState = ({ target: { value } }) => {
+        this.setState({ destination: value });
     }
 
     getRouteName = ref => {
@@ -81,12 +78,12 @@ class FormModalPage extends Component {
         this.origin = ref;
     }
 
-    changeWaypoint1State = ( { target: { value } } ) => {
-        this.setState( { waypoint1: value } );
+    changeWaypoint1State = ({ target: { value } }) => {
+        this.setState({ waypoint1: value });
     }
 
-    changeWaypoint2State = ( { target: { value } } ) => {
-        this.setState( { waypoint2: value } );
+    changeWaypoint2State = ({ target: { value } }) => {
+        this.setState({ waypoint2: value });
     }
 
     getWaypoint1 = ref => {
@@ -148,7 +145,7 @@ class FormModalPage extends Component {
                                 }
                             }}
                             value={['']}
-                            >
+                        >
                             <option
                                 disabled
                                 value=""
@@ -209,7 +206,8 @@ class FormModalPage extends Component {
                             label="start"
                             type='text'
                             s={12}
-                            ref={this.getOrigin}
+                            onChange={this.changeOriginState}
+                            value={this.state.origin}
                         />
 
                         <TextInput
@@ -238,7 +236,8 @@ class FormModalPage extends Component {
                             label="end"
                             type='text'
                             s={12}
-                            ref={this.getDestination}
+                            onChange={this.changeDestinationState}
+                            value={this.state.destination}
                         />
                     </form>
                 </div>

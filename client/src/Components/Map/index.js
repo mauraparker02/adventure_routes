@@ -39,9 +39,10 @@ class Map extends Component {
         // if (!attempted) {
         //     attempted = true;
             return (
-                <LoadScript
-                    googleMapsApiKey="AIzaSyCZGl5xRRXsZcx3O3C4-YyfYT9jZVP5AVw"
-                >
+                // <LoadScript
+                //     googleMapsApiKey="AIzaSyCZGl5xRRXsZcx3O3C4-YyfYT9jZVP5AVw"
+                // >
+                <div>
                     <div className='map'>
                         <div className='map-settings'>
                             <Select
@@ -152,7 +153,8 @@ class Map extends Component {
                             </GoogleMap>
                         </div>
                     </div>
-                </LoadScript>
+                    </div>
+                // </LoadScript>
             )
         // }
         // else {
