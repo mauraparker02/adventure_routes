@@ -25,16 +25,15 @@ function Jumbotron(props) {
         <Col m={2} s={12}></Col>
       </Row>
       <Row>
-        <Col m={1} s={12}></Col>
+        <Col m={2} s={12}></Col>
         <Col m={8} s={12}>
-          <TextInput id="TextInput-4" label="search route" m={4}></TextInput>
+          <div>
+          <TextInput id="TextInput-4" label="search route" m={8}></TextInput>
+          <Button className="button" style={ {margin: 'auto'}} waves="light-orange orange"><i><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></i></Button>
+          <NewRouteModal style={{margin:'auto'}} routes={props.routes} addRoute={props.addRoute} trigger={addRouteTrigger}/>
+          </div>
         </Col>
-        <Col m={2} s={12}>
-          <Button waves="light-orange orange"><i><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></i></Button>
-          <NewRouteModal routes={props.routes} addRoute={props.addRoute} trigger={addRouteTrigger}/>
-          {/* <Button waves="light-orange orange" class="btntext">+</Button> */}
-        </Col>
-        <Col m={1} s={12}></Col>
+        <Col m={2} s={12}></Col>
       </Row>
     </div>
   );
