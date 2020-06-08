@@ -2,10 +2,12 @@ import React, { Component } from "react";
 
 import FavRouteCard from "./FavRouteCard";
 
+
+
 function FavRouteSection(props) {
     return (
         <div>
-            {(props.routes !== []) && (props.routes.map(route => <FavRouteCard route={route}/>))}
+            {(props.routes !== []) && (props.routes.map(route => <FavRouteCard username={props.username} route={route}/>))}
         </div>
     )
 }

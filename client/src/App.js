@@ -62,7 +62,7 @@ class App extends Component {
     })
     .then(response => {
       this.setState({
-        routes: this.state.routes.push(response.data.routes)
+        routes: this.state.routes.push(response.data.user.routes)
       })
     }).catch(err => console.log(err));
   }
@@ -73,7 +73,7 @@ class App extends Component {
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
         <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username} routes={this.state.routes} addRoute={this.addRoute}/>
-        <FavRouteSection routes={this.state.routes}/>
+        <FavRouteSection routes={this.state.routes} username={this.state.username}/>
       </div>
     );
   }
