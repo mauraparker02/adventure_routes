@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-materialize";
 
-import Map from "./Map";
+import Map from "../../Map";
 
 class MapModalPage extends Component {
     handleModalSubmit = () => {
