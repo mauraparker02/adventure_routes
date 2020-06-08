@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     loggedIn: false,
     username: null,
-    user: null,
+    user: {id: '', username: '', routes: ''},
     description: null,
     routes: []
   };
@@ -39,7 +39,7 @@ class App extends Component {
           username: response.data.user.username,
           user: response.data.user,
           description: response.data.user.description,
-          routes: response.data.user.user.routes
+          routes: response.data.user.routes
         });
       }
       else {
@@ -75,10 +75,10 @@ class App extends Component {
         <Jumbotron
           loggedIn={this.state.loggedIn}
           username={this.state.username}
-          routes={this.state.routes}
+          routes={this.state.user.routes}
           addRoute={this.addRoute}
         />
-        {/* <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/> */}
+        <NewRouteModal routes={this.state.routes} addRoute={this.addRoute}/>
         <FavRouteSection routes={this.state.routes}/>
       </div>
     );

@@ -34,7 +34,8 @@ class SignInNav extends Component {
                     this.props.updateUser({
                         loggedIn: true,
                         username: response.data.username,
-                        user: response.data.user
+                        user: response.data.user,
+                        routes: response.data.user.routes
                     })
                     // update the state to redirect to home
                     this.setState({
