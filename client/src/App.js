@@ -61,14 +61,31 @@ class App extends Component {
       routes: [routeObject]
     })
     .then(response => {
-      this.setState({
-        routes: this.state.routes.push(response.data.user.routes)
-      })
+      console.log(response);
+      const temp = response.data.routes;
+      temp.push(routeObject);
+
+      if (response.status === 200) {
+        console.log("Yayyyyyyy");
+          this.setState({
+            routes: temp
+          });
+      }
+      else {
+        console.log("Booooooo");
+      }
+      // const temp = this.state.routes;
+      // this.setState({
+      //   routes: temp
+      // })
+      // this.getUser();
     }).catch(err => console.log(err));
   }
 
   render() {
     // const addRouteTrigger = <Button waves='orange'>+</Button>;
+    console.log("Route cards to render:");
+    console.log(this.state.routes);
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
