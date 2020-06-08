@@ -4,7 +4,8 @@ import axios from 'axios';
 import AdventureRouteNav from './Components/AdventureRouteNav';
 import Jumbotron from './Components/Jumbotron';
 import NewRouteModal from "./Components/NewRouteModal";
-import FavRouteCard from "./Components/FavRouteCard";
+import FavRouteSection from "./Components/FavRouteSection";
+import FavRouteCard from "./Components/FavRouteSection/FavRouteCard"
 import './App.css';
 
 class App extends Component {
@@ -12,9 +13,8 @@ class App extends Component {
     loggedIn: false,
     username: null,
     user: null,
-    description: "",
-    routes: [],
-
+    description: null,
+    routes: []
   };
 
   componentDidMount() {
@@ -23,6 +23,7 @@ class App extends Component {
 
   updateUser = userObject => {
     this.setState(userObject);
+    this.getUser();
   }
 
   getUser = () => {
@@ -30,9 +31,6 @@ class App extends Component {
       console.log('Get user response: ');
       console.log(response.data);
       if (response.data.user) {
-        console.log(response.data.user);
-        console.log('Get User: There is a user saved in the server session: ');
-
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
@@ -52,22 +50,25 @@ class App extends Component {
   }
 
   addRoute = routeObject => {
-    axios.post('/user/routes').then(() => {
+    console.log("User object to route search:");
+    console.log(this.state.user);
+    const id = "5edc48b9f4b0419af274c9dc";
+    axios.post('/user/routes/' + id, {
+      routes: [routeObject]
+    })
+    .then(response => {
       this.setState({
-        routes: this.state.routes.push(routeObject)
+        routes: this.state.routes.push(response.data.routes)
       })
     }).catch(err => console.log(err));
   }
 
   render() {
-    const addRouteTrigger = <Button waves='light' style={{
-      backgroundColor: 'orange'
-    }}>Add Route</Button>;
+    // const addRouteTrigger = <Button waves='orange'>+</Button>;
     return (
       <div>
-        <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
-        <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
+        <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
+        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username} routes={this.state.routes} addRoute={this.addRoute}/>
     <FavRouteCard routes={this.state.routes}></FavRouteCard>
       </div>
     );

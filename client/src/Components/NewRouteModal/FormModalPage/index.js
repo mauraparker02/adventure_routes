@@ -3,27 +3,44 @@ import { Button, TextInput, Textarea, Select } from "react-materialize";
 
 
 class FormModalPage extends Component {
+    state = {
+        description: '',
+        price_category: '',
+        activities: '',
+        waypoint1: '',
+        waypoint2: ''
+    }
+
     handleModalSubmit = () => {
-        this.onClick();
-        this.props.update({
-            modalPage: false,
-        });
+        if (this.origin.value !== '' &&
+            this.state.waypoint1 !== '' &&
+            this.state.waypoint2 !== '' &&
+            this.destination.value !== '') {
+                this.onClick();
+                this.props.update({
+                    modalPage: false,
+                });
+        }
+        else {
+            console.log("Not all locations added!");
+        }
     }
 
     onClick = () => {
         if (this.origin.value !== '' &&
-            this.origin.waypoints !== [] &&
+            this.state.waypoint1 !== '' &&
+            this.state.waypoint2 !== '' &&
             this.destination.value !== '') {
             
             console.log(`Origin: ${this.origin.value}`);
-            console.log(`Waypoint: ${this.waypoint1.value} ${this.waypoint2.value}`)
+            console.log(`Waypoint: ${this.state.waypoint1} ${this.state.waypoint2}`)
             console.log(`Destination: ${this.destination.value}`);
 
             this.props.update({
                 origin: this.origin.value,
                 waypoints: [
-                    { location: this.waypoint1.value },
-                    { location: this.waypoint2.value }
+                    { location: this.state.waypoint1 },
+                    { location: this.state.waypoint2 }
                 ],
                 destination: this.destination.value
             });
@@ -31,34 +48,45 @@ class FormModalPage extends Component {
             this.props.addRoute(
                 {
                     name: this.routeName.value,
-                    description: "",
-                    activities: "",
-                    price_category: "",
+                    description: this.state.description,
+                    activities: this.state.activities,
+                    price_category: this.state.price_category,
                     route: {
                         origin: this.origin.value,
                         waypoints: [ 
-                            { location: this.waypoint1.value },
-                            { location: this.waypoint2.value }
+                            { location: this.state.waypoint1 },
+                            { location: this.state.waypoint2 }
                         ],
                         destination: this.destination.value
                     }
                 }
             );
         }
+    }
 
-        var routeObject = { }
+    changeDescriptionState = ( { target: { value } } ) => {
+        this.setState( { description: value } );
+    }
+
+    changePriceState = ( { target: { value } } ) => {
+        this.setState( { price_category: value } );
     }
 
     getRouteName = ref => {
         this.routeName = ref;
     }
 
-    getDescription = ref => {
-        this.description = ref;
+    getOrigin = ref => {
+        console.log("Description: " + ref)
+        this.origin = ref;
     }
 
-    getOrigin = ref => {
-        this.origin = ref;
+    changeWaypoint1State = ( { target: { value } } ) => {
+        this.setState( { waypoint1: value } );
+    }
+
+    changeWaypoint2State = ( { target: { value } } ) => {
+        this.setState( { waypoint2: value } );
     }
 
     getWaypoint1 = ref => {
@@ -89,17 +117,20 @@ class FormModalPage extends Component {
                         />
 
                         <Textarea
-                            id="Textarea-12"
+                            id="ROUTE-DESCRIPTION"
+                            className='form-control'
                             s={12}
                             label="route description"
                             type='text'
-                            ref={this.getDescription}
+                            onChange={this.changeDescriptionState}
+                            value={this.state.description}
                         />
 
                         <Select
                             id="activity-select"
                             s={6}
-                            multiple options={{
+                            onChange={this.changeActivityState}
+                            multiple={false} options={{
                                 classes: '',
                                 dropdownOptions: {
                                     alignment: 'left',
@@ -124,19 +155,19 @@ class FormModalPage extends Component {
                             >
                                 Pick activity categories
                             </option>
-                            <option value="1">
+                            <option value="Music">
                                 Music
                             </option>
-                            <option value="2">
+                            <option value="Food/Drink">
                                 Food/Drink
                             </option>
-                            <option value="3">
+                            <option value="Sports">
                                 Sports
                             </option>
-                            <option value="4">
+                            <option value="Comedy">
                                 Comedy
                             </option>
-                            <option value="5">
+                            <option value="Movie">
                                 Movie
                             </option>
                         </Select>
@@ -145,6 +176,7 @@ class FormModalPage extends Component {
                             id="activity-select"
                             s={6}
                             multiple={false}
+                            onChange={this.changePriceState}
                             options={{
                                 classes: '',
                                 dropdownOptions: {
@@ -162,26 +194,13 @@ class FormModalPage extends Component {
                                     outDuration: 250
                                 }
                             }}
-                            value={['']}
-                            >
-                            <option
-                                disabled
-                                value=""
-                            >
-                                Pick price category
-                            </option>
-                            <option value="1">
-                                $
-                            </option>
-                            <option value="2">
-                                $$
-                            </option>
-                            <option value="3">
-                                $$$
-                            </option>
-                            <option value="4">
-                                $$$$
-                            </option>
+                            value='free'
+                        >
+                            <option value="free">Pick price category</option>
+                            <option value="$" selected="false">$</option>
+                            <option value="$$" selected="false">$$</option>
+                            <option value="$$$" selected="false">$$$</option>
+                            <option value="$$$$" selected="false">$$$$</option>
                         </Select>
 
                         <TextInput
@@ -199,7 +218,8 @@ class FormModalPage extends Component {
                             label="stop"
                             type='text'
                             s={12}
-                            ref={this.getWaypoint1}
+                            onChange={this.changeWaypoint1State}
+                            value={this.state.waypoint1}
                         />
 
                         <TextInput
@@ -208,7 +228,8 @@ class FormModalPage extends Component {
                             label="stop"
                             type='text'
                             s={12}
-                            ref={this.getWaypoint2}
+                            onChange={this.changeWaypoint2State}
+                            value={this.state.waypoint2}
                         />
 
                         <TextInput
@@ -222,7 +243,9 @@ class FormModalPage extends Component {
                     </form>
                 </div>
 
-                <Button onClick={this.handleModalSubmit} waves="#orange">Render Map</Button>
+                <Button onClick={this.handleModalSubmit} waves="orange">Render Map</Button>
+
+                <p class="error"></p>
             </div>
         )
     }
