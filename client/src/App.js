@@ -5,6 +5,7 @@ import AdventureRouteNav from './Components/AdventureRouteNav';
 import Jumbotron from './Components/Jumbotron';
 import NewRouteModal from "./Components/NewRouteModal";
 import FavRouteSection from "./Components/FavRouteSection";
+import FavRouteCard from "./Components/FavRouteSection/FavRouteCard"
 import './App.css';
 
 class App extends Component {
@@ -63,13 +64,12 @@ class App extends Component {
   }
 
   render() {
-    const addRouteTrigger = <Button waves='orange'>Add Route</Button>;
+    // const addRouteTrigger = <Button waves='orange'>+</Button>;
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
-        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username}/>
-        <NewRouteModal routes={this.state.routes} addRoute={this.addRoute} trigger={addRouteTrigger}/>
-        <FavRouteSection></FavRouteSection>
+        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username} routes={this.state.routes} addRoute={this.addRoute}/>
+    <FavRouteCard routes={this.state.routes}></FavRouteCard>
       </div>
     );
   }

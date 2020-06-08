@@ -15,21 +15,21 @@ function FavRouteCard (props){
       <div className="card">
       <div className="card-action">
       <img src="/icons/empty_user.png" height="35px" width="auto"/>
-      <a href="#">User Name</a>
+      <a href="#">{props.username}</a> 
         </div>
      
         <div className="image-wrapper">
         <div className="card-image">
-          <img src="/testimgs/RouteCardPic.jpg"/>
+          <img src="/testimgs/stock_image.jpg"/>
         </div>
         </div>
         <div className="card-content">
-        <span className="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+        <span className="card-title">{props.name}</span>
+          <p>{props.description}</p>
         </div>
         <div className="card-action">
-          <button type="submit"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></button>
+          {/* <button type="submit"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></button> */}
+          <a class="btn-floating  waves-effect waves-red white"><i class="material-icons"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></i></a>
         </div>
       </div>
       </Col>
