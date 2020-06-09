@@ -15,7 +15,8 @@ class App extends Component {
     username: null,
     user: {id: '', username: '', routes: ''},
     description: null,
-    routes: []
+    routes: [],
+    search: ''
   };
 
   componentDidMount() {
@@ -41,7 +42,7 @@ class App extends Component {
           username: response.data.user.username,
           user: response.data.user,
           description: response.data.user.description,
-          routes: response.data.user.routes
+          routes: response.data.user.routes,
         });
       }
       else {
@@ -69,7 +70,8 @@ class App extends Component {
       if (response.status === 200) {
         console.log("Yayyyyyyy");
           this.setState({
-            routes: temp
+            routes: temp,
+            user: { id: this.state.user.id, username: this.state.user.username, routes: temp }
           });
       }
       else {
@@ -83,6 +85,22 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
+  filterRoute = event => {
+    console.log("Route input: " + event.target.value);
+    console.log("Route list: ");
+    console.log(this.state.user.routes);
+    var filteredRoutes = this.state.user.routes.filter(route => 
+      route.name.toLowerCase().includes(event.target.value)
+    );
+    console.log(filteredRoutes);
+    this.setState({
+      search: event.target.value,
+      routes: filteredRoutes
+    })
+    console.log("Filtered route list: ");
+    console.log(this.state.routes);
+  }
+
   render() {
     // const addRouteTrigger = <Button waves='orange'>+</Button>;
     console.log("Route cards to render:");
@@ -90,7 +108,14 @@ class App extends Component {
     return (
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
-        <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username} routes={this.state.routes} addRoute={this.addRoute}/>
+        <Jumbotron
+          loggedIn={this.state.loggedIn}
+          username={this.state.username}
+          routes={this.state.routes}
+          search={this.state.search}
+          addRoute={this.addRoute}
+          filterRoute={this.filterRoute}
+        />
         <div className="fav-routes-section"></div>
         <FavRouteSection routes={this.state.routes} username={this.state.username}/>
       </div>

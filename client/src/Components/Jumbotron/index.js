@@ -28,7 +28,14 @@ function Jumbotron(props) {
         {/* <Col m={2} s={12}></Col>
         <Col m={8} s={12}> */}
           <div className="flexbox">
-          <TextInput id="TextInput-4" label="search route" style={ {margin: '0'}} m={8}></TextInput>
+          <TextInput
+            id="TextInput-4"
+            label="search route"
+            style={ {margin: '0'}}
+            m={8}
+            value={props.search}
+            onChange={props.filterRoute}
+          />
           <Button className="button btnfav" waves="light-orange orange"><i><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></i></Button>
           <NewRouteModal routes={props.routes} addRoute={props.addRoute} trigger={addRouteTrigger}/>
           </div>
