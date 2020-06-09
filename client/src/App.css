@@ -58,3 +58,7 @@ nav {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+.fav-routes-section {
+  height: 50px; 
+};
