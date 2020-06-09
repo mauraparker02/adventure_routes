@@ -40,10 +40,8 @@ router.post(
     (req, res) => {
         console.log('logged in');
         if(req.user){
-            console.log("Login USER data Query MongoDB")
             User.findOne({username: req.user.username})
         .then(response => {
-            console.log("MONGODB USER FIND?LOGIN!");
             if(response.password === req.user.password) {
                 let responseObj = {
                     id: response._id,
