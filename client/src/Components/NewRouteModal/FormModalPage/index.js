@@ -18,9 +18,6 @@ class FormModalPage extends Component {
             this.state.waypoint1 !== '' &&
             this.state.waypoint2 !== '' &&
             this.state.destination !== '') {
-            console.log(`Origin: ${this.state.origin}`);
-            console.log(`Waypoint: ${this.state.waypoint1} ${this.state.waypoint2}`)
-            console.log(`Destination: ${this.state.destination}`);
 
             this.props.update({
                 origin: this.state.origin,
@@ -73,29 +70,12 @@ class FormModalPage extends Component {
         this.routeName = ref;
     }
 
-    getOrigin = ref => {
-        console.log("Description: " + ref)
-        this.origin = ref;
-    }
-
     changeWaypoint1State = ({ target: { value } }) => {
         this.setState({ waypoint1: value });
     }
 
     changeWaypoint2State = ({ target: { value } }) => {
         this.setState({ waypoint2: value });
-    }
-
-    getWaypoint1 = ref => {
-        this.waypoint1 = ref;
-    }
-
-    getWaypoint2 = ref => {
-        this.waypoint2 = ref;
-    }
-
-    getDestination = ref => {
-        this.destination = ref;
     }
 
     render() {
@@ -105,7 +85,6 @@ class FormModalPage extends Component {
                 <div className='row'>
                     <form className="col s12">
                         <TextInput
-                            id='ROUTE-NAME'
                             className='form-control'
                             label="route name"
                             type='text'
@@ -114,7 +93,6 @@ class FormModalPage extends Component {
                         />
 
                         <Textarea
-                            id="ROUTE-DESCRIPTION"
                             className='form-control'
                             s={12}
                             label="route description"
@@ -124,7 +102,6 @@ class FormModalPage extends Component {
                         />
 
                         <Select
-                            id="activity-select"
                             s={6}
                             onChange={this.changeActivityState}
                             multiple={false} options={{
@@ -144,7 +121,7 @@ class FormModalPage extends Component {
                                     outDuration: 250
                                 }
                             }}
-                            value={['']}
+                            value=''
                         >
                             <option
                                 disabled
@@ -170,7 +147,6 @@ class FormModalPage extends Component {
                         </Select>
 
                         <Select
-                            id="activity-select"
                             s={6}
                             multiple={false}
                             onChange={this.changePriceState}
@@ -194,14 +170,13 @@ class FormModalPage extends Component {
                             value='free'
                         >
                             <option value="free">Pick price category</option>
-                            <option value="$" selected="false">$</option>
-                            <option value="$$" selected="false">$$</option>
-                            <option value="$$$" selected="false">$$$</option>
-                            <option value="$$$$" selected="false">$$$$</option>
+                            <option value="$">$</option>
+                            <option value="$$">$$</option>
+                            <option value="$$$">$$$</option>
+                            <option value="$$$$">$$$$</option>
                         </Select>
 
                         <TextInput
-                            id='ORIGIN'
                             className='form-control'
                             label="start"
                             type='text'
@@ -211,7 +186,6 @@ class FormModalPage extends Component {
                         />
 
                         <TextInput
-                            id='WAYPOINT'
                             className='form-control'
                             label="stop"
                             type='text'
@@ -221,7 +195,6 @@ class FormModalPage extends Component {
                         />
 
                         <TextInput
-                            id='WAYPOINT'
                             className='form-control'
                             label="stop"
                             type='text'
@@ -231,7 +204,6 @@ class FormModalPage extends Component {
                         />
 
                         <TextInput
-                            id='DESTINATION'
                             className='form-control'
                             label="end"
                             type='text'
@@ -244,7 +216,7 @@ class FormModalPage extends Component {
 
                 <Button onClick={this.handleModalSubmit} waves="orange">Render Map</Button>
 
-                <p class="error"></p>
+                <p className="error"></p>
             </div>
         )
     }

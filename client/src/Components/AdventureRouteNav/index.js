@@ -1,22 +1,18 @@
 import React, { Component } from "react";
-import { Navbar, Icon, NavItem } from "react-materialize";
+import { Navbar, NavItem } from "react-materialize";
 import axios from "axios";
+
 import SignUpNav from "./SignUpNav";
 import SignInNav from "./SignInNav";
+
 import "./style.css"
 
-
 class AdventureRouteNav extends Component {
-  constructor() {
-    super()
-    this.logout = this.logout.bind(this)
-  }
-
-  logout(event) {
+  logout = event => {
     event.preventDefault()
     console.log('logging out')
     axios.post('/user/logout').then(response => {
-      console.log(response.data)
+      console.log(response.status);
       if (response.status === 200) {
         this.props.updateUser({
           loggedIn: false,
@@ -30,8 +26,6 @@ class AdventureRouteNav extends Component {
 
   render() {
     const loggedIn = this.props.loggedIn;
-    console.log('navbar render, props: ')
-    console.log(this.props);
 
     const signUpTrigger = <NavItem>Sign Up</NavItem>;
     const signInTrigger = <NavItem>Sign In</NavItem>;
@@ -41,7 +35,7 @@ class AdventureRouteNav extends Component {
         alignLinks="right"
         brand={<div className="logo-wrap" href=""><a><img className="brand-logo"  alt="" src="/icons/small_logo.png" width="auto" height="60px"/></a></div>}
         id="mobile-nav"
-        menuIcon={<Icon><div className="burger" href=""><img className="brand-logo" alt="" src="/icons/hamburger.png" width="auto" height="25px"/></div></Icon>}
+        menuIcon={<div className="burger" href=""><img className="brand-logo" alt="" src="/icons/hamburger.png" width="auto" height="25px"/></div>}
         options={{
           draggable: true,
           edge: 'left',

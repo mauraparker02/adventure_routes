@@ -4,12 +4,9 @@ const User = require('../models/user');
 const passport = require('../passport');
 
 router.post('/', (req, res) => {
-    console.log('user signup');
-
     // const { username, password } = req.body
     const username = req.body.username;
     const password = req.body.password;
-    console.log(username, password)
     // ADD VALIDATION
     User.findOne({ username: username }, (err, user) => {
         if (err) {
@@ -37,18 +34,14 @@ router.post('/', (req, res) => {
 router.post(
     '/login',
     (req, res, next) => {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body);
         next();
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
+        console.log('logged in');
         if(req.user){
-            console.log("Login USER data Query MongoDB")
             User.findOne({username: req.user.username})
         .then(response => {
-            console.log("MONGODB USER FIND?LOGIN!");
             if(response.password === req.user.password) {
                 let responseObj = {
                     id: response._id,
@@ -56,8 +49,6 @@ router.post(
                     routes: response.routes,
                     description: response.description
                 };
-                console.log("Without password:")
-                console.log(responseObj);
                 res.send({user:responseObj, username:responseObj.username});
             }
             else {
@@ -73,14 +64,10 @@ router.post(
 );
 
 router.get('/', (req, res, next) => {
-    console.log('===== user!!======')
-    console.log(req.user)
     if (req.user) {
-        console.log("TRYING TO GET USER PLEASE");
         // Retrieve rest of user info once valid
         User.findOne({username: req.user.username})
         .then(response => {
-            console.log("User here!");
             if(response.password === req.user.password) {
                 let responseObj = response;
                 delete responseObj.password;
@@ -105,7 +92,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/routes/:id', (req, res) => {
-    console.log("Route to add to db: " + req.body.routes);
     User.findByIdAndUpdate({
         _id: req.params.id
     }, {

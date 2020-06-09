@@ -7,10 +7,10 @@
 }
 
 .btnfav {
-margin-top: auto; 
-margin-bottom: auto; 
-margin-left: 0; 
-margin-right: 0; 
+    margin-top: auto; 
+    margin-bottom: auto; 
+    margin-left: 0; 
+    margin-right: 0; 
 }
 
 #jumbotron {
@@ -20,7 +20,7 @@ margin-right: 0;
     background-image: url(/icons/background.png);
     background-repeat: no-repeat; 
     background-size: cover; 
-    overflow: scroll;
+    overflow: hidden;
 }
 
 
@@ -33,9 +33,9 @@ margin-right: 0;
 }
 
 #crop-in{
-        max-width: 50px;
-        max-height: auto;
-        display: block;
+    max-width: 50px;
+    max-height: auto;
+    display: block;
 }
 
 textarea {

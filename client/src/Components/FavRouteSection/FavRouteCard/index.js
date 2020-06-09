@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Modal, Card } from "react-materialize";
+import { Modal } from "react-materialize";
 
 import Map from "../../Map";
 
@@ -14,7 +14,7 @@ function FavRouteCard(props) {
         <div className="card">
           <div className="card-action">
             <div className="card-content">
-              <img src="/icons/empty_user.png" height="35px" width="auto" />
+              <img src="/icons/empty_user.png" alt="user-icon" height="35px" width="auto" />
               <div className="username">
                 <a href="#">{props.username}</a>
               </div>
@@ -22,7 +22,7 @@ function FavRouteCard(props) {
           </div>
           <div className="image-wrapper">
             <div className="card-image">
-              <img src="/testimgs/stock_image.jpg" />
+              <img src="/testimgs/stock_image.jpg" alt="stock-img"/>
             </div>
           </div>
           <div className="card-content">
