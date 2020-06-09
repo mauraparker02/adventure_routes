@@ -89,7 +89,7 @@ class App extends Component {
     console.log("Route list: ");
     console.log(this.state.user.routes);
     var filteredRoutes = this.state.user.routes.filter(route => 
-      route.name.toLowerCase().includes(event.target.value)
+      route.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     console.log(filteredRoutes);
     this.setState({
