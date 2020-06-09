@@ -52,3 +52,9 @@ nav {
   width: auto; 
   padding: 20px
 }
+
+.a {
+  color: black;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}

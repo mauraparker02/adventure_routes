@@ -1,15 +1,17 @@
-import React from "react";
-import { Row, Col } from "react-materialize";
-
+import React, { Component } from "react";
+import { Row, Col, } from 'react-materialize';
 import FavRouteCard from "./FavRouteCard";
 
 
 
 function FavRouteSection(props) {
     return (
-        <div>
+        <Row>
+            <Col m={3} ></Col>
+            <Col m={6} ></Col>
             {props.routes.map(route => <FavRouteCard username={props.username} route={route}/>)}
-        </div>
+            <Col m={3} ></Col>
+        </Row>
     )
 }
 
