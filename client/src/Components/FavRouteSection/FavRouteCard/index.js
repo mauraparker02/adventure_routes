@@ -42,7 +42,7 @@ function FavRouteCard(props) {
                   />
                 </i>
               </a>
-              <p>{props.route.price_category}</p>
+              <h3>{props.route.price_category}</h3>
             </div>
           </div>
         </div>
