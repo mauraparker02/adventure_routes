@@ -13,18 +13,12 @@ class SignUpNav extends Component {
 	}
 
 	handleChange = event => {
-		console.log("Changing! " + event.target.value);
 		this.setState({
 			[event.target.name]: event.target.value
 		})
-		console.log("Username: " + this.state.username);
-		console.log("Password: " + this.state.password);
 	}
 	handleSubmit = event => {
 		event.preventDefault();
-		console.log('sign-up handleSubmit, username: ');
-		console.log("Username: " + this.state.username);
-		console.log("Description: " + this.state.description);
 
 		//request to server to add a new username/password
 		axios.post('/user/', {
@@ -34,7 +28,6 @@ class SignUpNav extends Component {
 			routes: this.state.routes
 		})
 			.then(response => {
-				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('successful signup')
 					this.props.history.push('/login');

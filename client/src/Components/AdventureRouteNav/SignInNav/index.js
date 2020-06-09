@@ -8,7 +8,7 @@ class SignInNav extends Component {
         password: '',
         redirectTo: null
     }
-
+    
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -17,7 +17,6 @@ class SignInNav extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        console.log('handleSubmit');
 
         axios
             .post('/user/login', {
@@ -26,10 +25,8 @@ class SignInNav extends Component {
             })
             .then(response => {
                 console.log('login response: ')
-                console.log(response)
                 console.log(response.status);
                 if (response.status === 200) {
-                    console.log(response.data);
                     // update App.js state
                     this.props.updateUser({
                         loggedIn: true,

@@ -62,3 +62,7 @@ nav {
 .fav-routes-section {
   height: 50px; 
 };
+
+body{
+  background-color:rgb(245, 245, 245);
+}; 

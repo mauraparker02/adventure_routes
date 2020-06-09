@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+
+import {LoadScript} from "@react-google-maps/api";
+
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {LoadScript} from "@react-google-maps/api";
-
-import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
