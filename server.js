@@ -39,10 +39,10 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 app.use(express.static(path.join(__dirname, "client", "build", "public")));
 
 // Routes
+app.use('/user', user);
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-app.use('/user', user);
 // Starting Server 
 app.listen(PORT, () => {
     console.log(`App listening on PORT: ${PORT}`);
