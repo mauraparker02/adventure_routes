@@ -21,8 +21,7 @@ function Jumbotron(props) {
       <Row>
         <Col m={2} s={12}></Col>
         <Col m={8} s={12}>
-          <h1 className="welcome">{props.loggedIn ? props.username : "Welcome"}</h1>
-          <h2 className="welcome">Search below to find your next adventure!</h2>
+          <h1 className="welcome">{props.loggedIn ? props.username : "Welcome"}, Click on the + button to add a new route!</h1>
         </Col>
         <Col m={2} s={12}></Col>
       </Row>
