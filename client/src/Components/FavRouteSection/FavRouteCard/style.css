@@ -1,3 +1,6 @@
+.card-body{
+  background-image: black;
+}
 .image-frame {
     border-top: -20px solid white;
     border-bottom: 20px solid white;

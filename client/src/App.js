@@ -91,6 +91,7 @@ class App extends Component {
       <div>
         <AdventureRouteNav updateUser={this.updateUser} loggedIn={this.state.loggedIn}/>
         <Jumbotron loggedIn={this.state.loggedIn} username={this.state.username} routes={this.state.routes} addRoute={this.addRoute}/>
+        <div className="fav-routes-section"></div>
         <FavRouteSection routes={this.state.routes} username={this.state.username}/>
       </div>
     );
