@@ -27,6 +27,7 @@ function FavRouteCard(props) {
           </div>
           <div className="card-content">
             <span className="card-title">{props.route.name}</span>
+            <b>{props.route.price_category}</b>
             <p>{props.route.description}</p>
           </div>
           <div className="card-action">
@@ -42,7 +43,6 @@ function FavRouteCard(props) {
                   />
                 </i>
               </a>
-              <p>{props.route.price_category}</p>
             </div>
           </div>
         </div>

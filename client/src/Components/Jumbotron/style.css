@@ -114,3 +114,8 @@ textarea.materialize-textarea {
     padding-left: 15%;
     padding-right: 15%;
 }
+
+h3 {
+text-align: right; 
+font-size: medium;
+}
