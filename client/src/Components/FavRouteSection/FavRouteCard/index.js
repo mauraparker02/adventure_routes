@@ -10,52 +10,47 @@ import "./style.css";
 function FavRouteCard(props) {
   const routeCardTrigger = (
     <div className="card-body">
-    <a href="#">
-        <Col m={3} s={0}></Col>
-        <Col m={6} s={12}>
-          <div className="card">
-            <div className="card-action">
-              <div className="card-content">
-                <img src="/icons/empty_user.png" height="35px" width="auto" />
-                <div className="username">
-                  <a href="#">{props.username}</a>
-                </div>
-              </div>
-            </div>
-            <div className="image-wrapper">
-              <div className="card-image">
-                <img src="/testimgs/stock_image.jpg" />
-              </div>
-            </div>
+      <a href="#">
+        <div className="card">
+          <div className="card-action">
             <div className="card-content">
-              <span className="card-title">{props.route.name}</span>
-              <p>{props.route.description}</p>
-            </div>
-            <div className="card-action">
-              {/* <button type="submit"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></button> */}
-              <div className="card-content">
-                <a class="btn-floating  waves-effect waves-red white">
-                  <i class="material-icons">
-                    <img
-                      src="/icons/heart_icon.png"
-                      alt="like"
-                      height="15px"
-                      width="auto"
-                    />
-                  </i>
-                </a>
-                <p>{props.route.price_category}</p>
+              <img src="/icons/empty_user.png" height="35px" width="auto" />
+              <div className="username">
+                <a href="#">{props.username}</a>
               </div>
             </div>
           </div>
-          <Col m={3} s={0} l={3}></Col>
-        </Col>
-    </a>
-    </div>
+          <div className="image-wrapper">
+            <div className="card-image">
+              <img src="/testimgs/stock_image.jpg" />
+            </div>
+          </div>
+          <div className="card-content">
+            <span className="card-title">{props.route.name}</span>
+            <p>{props.route.description}</p>
+          </div>
+          <div className="card-action">
+            {/* <button type="submit"><img src="/icons/heart_icon.png" alt="like" height="15px" width="auto"/></button> */}
+            <div className="card-content">
+              <a class="btn-floating  waves-effect waves-red white">
+                <i class="material-icons">
+                  <img
+                    src="/icons/heart_icon.png"
+                    alt="like"
+                    height="15px"
+                    width="auto"
+                  />
+                </i>
+              </a>
+              <p>{props.route.price_category}</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div >
   );
 
   return (
-    <Row>
       <Modal trigger={routeCardTrigger}>
         <h2>Map</h2>
         <Map
@@ -64,7 +59,6 @@ function FavRouteCard(props) {
           destination={props.route.route.destination}
         />
       </Modal>
-    </Row>
   );
 }
 
